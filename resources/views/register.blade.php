@@ -71,7 +71,7 @@
 						<div class="rdfield form-group {{ $errors->has('Last_Name') ? 'has-error' : '' }}"><input name="Last_Name" type="text" placeholder="Last Name" value="{{ old('Last_Name') }}"></div>
 						<div class="rdfield form-group {{ $errors->has('email') ? 'has-error' : '' }}"><input name="email" type="email" placeholder="Your Current Mail"></div>
 						<div class="rdfield form-group {{ $errors->has('username') ? 'has-error' : '' }}"><input name="username" type="text" placeholder="Create your username"></div>
-						<div class="rdfield form-group {{ $errors->has('password') ? 'has-error' : '' }}"><input name="password" type="text" placeholder="Create a password"></div>
+						<div class="rdfield form-group {{ $errors->has('password') ? 'has-error' : '' }}"><input name="password" type="password" placeholder="Create a password"></div>
 						<div class="rdfield form-group {{ $errors->has('speciality') ? 'has-error' : '' }}"><select name="speciality"><option>Speciality</option><option>Speciality1</option><option>Speciality2</option></select></div>
 						<div class="rdfield form-group {{ $errors->has('graduate') ? 'has-error' : '' }}"><input name="graduate" type="text" placeholder="Mecial or Graduate School"></div>
 						<div class="regsel cf">
@@ -79,7 +79,7 @@
 						<div class="reyear form-group {{ $errors->has('year') ? 'has-error' : '' }}"><select name="year"><option>Year</option><option>2017</option><option>2018</option></select></div>
 						</div>
 						<div class="rdfield form-group {{ $errors->has('profession') ? 'has-error' : '' }}"><input name="profession" type="text" placeholder="Professiona License#"></div>
-						<div class="rdfield form-group {{ $errors->has('state/country') ? 'has-error' : '' }}"><select name="state/country"><option>State/Country</option><option>India</option><option>USA</option></select></div>
+						<div class="rdfield form-group {{ $errors->has('state/country') ? 'has-error' : '' }}"><select name="country"><option>State/Country</option><option>India</option><option>USA</option></select></div>
 						<div class="regdoccheck form-group {{ $errors->has('newsletter') ? 'has-error' : '' }}">
 							<div class="regchk">
 								<input type="checkbox" id="newsletter" />

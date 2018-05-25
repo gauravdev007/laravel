@@ -60,7 +60,7 @@
                				
                 <div class="dnewfield">
                 	<label>Enter abbreviations following your names as you wish them to appear</label>
-                    <input type="text" name="abbreviation" value="">
+                    <input type="text" name="abbreviation" value="{{ old('abbreviation')}}">
 					
                 </div>
                 <div class="dfield2">
@@ -75,18 +75,18 @@
                 </div>
                 <div class="dfield3 cf">
                 	<label>Password</label>
-                    <input name="" type="password" placeholder="*********" name="password" value="{{ Session::get('password')}}">
+                    <input name="password" type="password" placeholder="*********"  value="{{ Session::get('password')}}">
                     <a href="#">(Change Password)</a>
                 </div>
                 <div class="dfield4 cf \">
                 	<div class="dfield4top cf form-group">
 						<label>First Name *</label>
-                    	<div class="dfinput"><input name="fname" type="text" value="{{ Session::get('first_name')}}">
+                    	<div class="dfinput"><input name="first_name" type="text" value="{{ Session::get('first_name')}}">
 						</div>
                     </div> 
                     <div class="dfield4bot cf">
 						<label>Last Name *</label>
-                    	<div class="dfinput"><input name="lname" type="text"  value="{{ Session::get('last_name')}}"></div>
+                    	<div class="dfinput"><input name="last_name" type="text"  value="{{ Session::get('last_name')}}"></div>
                     </div>               	
                 </div>  
                 <div class="dfield5 cf">

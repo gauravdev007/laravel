@@ -10,7 +10,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\Input;
 use DB;
 use Hash;
-
+use Illuminate\Support\Facades\Session;
 
 class dashboardController extends Controller
 {
@@ -40,10 +40,10 @@ class dashboardController extends Controller
     		]);
             
 			
-			$firstName = Input::get('fname');
-			$lastName = Input::get('lname');
+			$firstName = Input::get('first_name');
+			$lastName = Input::get('last_name');
 			$email = Input::get('email');
-			$altemail = Input::get('alternate_mail');
+			$altemail = Input::get('alternate_email');
 			$address = Input::get('address');
 			$city = Input::get('city');
 			$zip = Input::get('zip');
@@ -58,17 +58,14 @@ class dashboardController extends Controller
 			$id=Session::get('id');
 			 
 			DB::table('doctors')
-            ->where('',)
-            ->update(['votes' => 1]);
-				$id = DB::insert('doctors')->update(
-						['DocFname' => $firstName, 'DocLname' => $lastName, 'DocEmail' => $email, 'DocAlternateEmail' => $altemail, 'DocAddress' => $address,'DocPassword' => $password, 'DocCity' => $city, 'DocZip' => $zip, 'DocCountry' => $country, 'DocPhone' => $phone, 'DocAbbreviation' => $abbreviation, 'DocBio' => $bio]
-				);
+            ->where('id',$id)
+            ->update(['first_name' => $firstName, 'last_name' => $lastName, 'email' =>  $email, 'alternate_email' => $altemail, 'address' => $address, 'city' => $city, 'zip' => $zip, 'country' => $country, 'phone' => $phone, 'abbreviation' => $abbreviation, 'password' => $password, 'bio' => $bio]);
+				
 				
 						return Redirect::to('doctor/dashboard/feesandpayment')->with('message', 'Doctor your personel profile Successfully made.');
 						
 			
-			$id= false;
-			if($id) { echo 'true';}else{ echo 'false';}
+			
 			die;
         
 	 

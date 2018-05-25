@@ -52,13 +52,13 @@
             <div class="regtwoform">
             	<h3>Your information</h3>
                 <div class="regtwoforminner">
-                	<form action="register3.html">
-                    	<div class="regtwofield">
+                	<form action="../../patient/regsiter/step3">
+                    	<div class="regtwofield form-group {{ $errors->has('dob') ? 'has-error' : '' }}">
                         	<label>Date of Birth</label>
-                        	<input type="text" name="dob" placeholder="mm/dd/yyy">
+                        	<input type="text" name="dob" value="{{ old('dob') }}" placeholder="mm/dd/yyy">
                         </div>
-                        <div class="regtwofield"><input type="text"  name="phone" placeholder="Phone Number"></div>
-                        <div class="regtwofield"><input type="text" name="zip" placeholder="Zip Code"></div>   
+                        <div class="regtwofield form-group {{ $errors->has('phone') ? 'has-error' : '' }}"><input type="text"  name="phone" value="{{ old('phone') }}" placeholder="Phone Number"></div>
+                        <div class="regtwofield form-group {{ $errors->has('zip') ? 'has-error' : '' }}"><input type="text" name="zip" value="{{ old('zip') }}" placeholder="Zip Code"></div>   
                         <div class="regtworadio">
                         	<div class="radiodiv">                            	
                         		<input type="radio" id="male" name="gender" value="male"/>

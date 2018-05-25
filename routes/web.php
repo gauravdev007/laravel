@@ -56,6 +56,15 @@ Route::get('doctor/dashboard/feesandpayment', function()
    
  
 });
+Route::get('patient/regsiter/step3', function()
+ 
+{
+ 
+   return View::make('register3');
+   
+ 
+});
+
 
 
 Route::post('doctor/register', 'registerController@doctorvalidation');

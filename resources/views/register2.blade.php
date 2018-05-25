@@ -10,6 +10,7 @@
     <!-- CSS -->       
     <link type="text/css" rel="stylesheet" href="../../css/style.css" />    
     <script type="text/javascript" src="../../js/jquery-2.1.4.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
     <script type="text/javascript" src="../../js/all.js"></script>
 </head>
 <body>
@@ -24,14 +25,14 @@
                 	<img alt="globe" src="../../images/globeicon.png"><a href="#">French</a>
                 </div>
                 <div class="htopright cf">
-                	<a class="sta" href="../../register/register1">Get Started</a>
-                    <a class="sg" href="../../register/signin">Sign in</a>
+                	<a class="sta" href="../../patient/register/step1">Get Started</a>
+                    <a class="sg" href="../../signin">Sign in</a>
                 </div>
             </div>
         </div>
         <div class="hbot">
             <div class="wrap cf">
-                <div class="logo"><a href="../../register/index"><img alt="Waystagemde" src="../../images/logo.png" /></a></div>
+                <div class="logo"><a href="../../index"><img alt="Waystagemde" src="../../images/logo.png" /></a></div>
                 <div class="hbotright cf">
                     <ul class="cf">
                     	<li><a href="http://www.waystage.com#how">how it works</a></li>
@@ -54,10 +55,10 @@
                 	<form action="register3.html">
                     	<div class="regtwofield">
                         	<label>Date of Birth</label>
-                        	<input type="text" placeholder="mm/dd/yyy">
+                        	<input type="text" name="dob" placeholder="mm/dd/yyy">
                         </div>
-                        <div class="regtwofield"><input type="text" placeholder="Phone Number"></div>
-                        <div class="regtwofield"><input type="text" placeholder="Zip Code"></div>   
+                        <div class="regtwofield"><input type="text"  name="phone" placeholder="Phone Number"></div>
+                        <div class="regtwofield"><input type="text" name="zip" placeholder="Zip Code"></div>   
                         <div class="regtworadio">
                         	<div class="radiodiv">                            	
                         		<input type="radio" id="male" name="gender" value="male"/>
@@ -81,12 +82,12 @@
                         </div>
                         <div class="regtwocheck">
                         	<div class="regchk">
-                                <input type="checkbox" id="newsletter" />
-                                <label for="newsletter"><span></span></label><p>I agree to the <a href="../../register/term_of_use">Terms of Service</a> and <a href="../../register/privacy">Privacy Policy.</a></p>
+                                <input type="checkbox" id="newsletter" name="newsletter"/>
+                                <label for="newsletter"><span></span></label><p>I agree to the <a href="../../term_of_use">Terms of Service</a> and <a href="../../privacy">Privacy Policy.</a></p>
                             </div>
                         </div> 
                         <div class="regtwobot cf">
-                        	<a class="but" href="../../regsiter/register1">< Back</a>	                    
+                        	<a class="but" href="../../patient/regsiter/step1">< Back</a>	                    
                         	<div class="regtwosub"><input type="submit" value="Create Account"></div>
                         </div>
                     </form>

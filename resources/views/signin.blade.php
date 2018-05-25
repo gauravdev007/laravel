@@ -8,9 +8,10 @@
 	<link rel="shortcut icon" href="favicon.ico" />
     
     <!-- CSS -->       
-    <link type="text/css" rel="stylesheet" href="../css/style.css" />    
-    <script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="../js/all.js"></script>
+    <link type="text/css" rel="stylesheet" href="../../css/style.css" />    
+    <script type="text/javascript" src="../../js/jquery-2.1.4.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+    <script type="text/javascript" src="../../js/all.js"></script>
 </head>
 <body>
 
@@ -24,14 +25,14 @@
                 	<img alt="globe" src="../images/globeicon.png"><a href="#">French</a>
                 </div>
                 <div class="htopright cf">
-                	<a class="sta" href="../register/register1">Get Started</a>
-                    <a class="sg" href="../register/signin">Sign in</a>
+                	<a class="sta" href="../patient/register/step1">Get Started</a>
+                    <a class="sg" href="../signin">Sign in</a>
                 </div>
             </div>
         </div>
         <div class="hbot">
             <div class="wrap cf">
-                <div class="logo"><a href="../register/index"><img alt="Waystagemde" src="../images/logo.png" /></a></div>
+                <div class="logo"><a href="../index"><img alt="Waystagemde" src="../images/logo.png" /></a></div>
                 <div class="hbotright cf">
                     <ul class="cf">
                     	<li><a href="http://www.waystage.com#how">how it works</a></li>
@@ -43,20 +44,47 @@
         </div>
     </div>
     <!-- Header End -->
+	 
     <div class="inner_sing">
-    	<div class="signinform">
-        	<h3>Sign In to your account below</h3>
-            <div class="sigfield"><input name="" type="text" placeholder="User Name / Email"></div>
-            <div class="sigfield"><input name="" type="password" placeholder="Password"></div>
-            <div class="sbotfield cf">
-            	<a href="#">Forgot Username or Password?</a>
-                <input name="" type="submit" value="Sign in">
-            </div>
-        </div>
+		<form action="signin" enctype="multipart/form-data" method="POST">
+			<div class="signinform">
+				@if(session()->has('message'))
+				  <div class="alert alert-success">
+				{{ session()->get('message') }}
+				  </div>
+				@endif
+				
+				@if(count($errors))
+							  <div class="alert alert-danger">
+								  <strong>Whoops!</strong> There were some problems with your input.
+								  <br/>
+								  <ul>
+								  @foreach($errors->all() as $error)
+								  <li>{{ $error }}</li>
+								  @endforeach
+								  </ul>
+							 </div>
+				@endif
+				
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
+				
+				<h3>Sign In to your account below</h3>
+				<div class="sigfield form-group {{ $errors->has('type') ? 'has-error' : '' }}">
+				<select name="type"><option>Type</option><option>Doctor</option><option>Patient</option></select>
+				</div>
+				<div class="sigfield form-group{{ $errors->has('username') || $errors->has('email') ? ' is-invalid' : '' }}"><input name="login" type="text" placeholder="User Name / Email" value="{{ old('username') ?: old('email') }}"></div>
+				<div class="sigfield form-group {{ $errors->has('password') ? 'has-error' : '' }}"><input name="password" type="password" placeholder="Password" value="{{ old('password')}}"></div>
+				<div class="sbotfield cf">
+					<a href="#">Forgot Username or Password?</a>
+					<input name="" type="submit" value="Sign in">
+				</div>
+			</div>
+		</form>
         <div class="signbot">
-        	Not a member yet? <a href="#">Sign up</a> for free.
+        	Not a member yet? <a href="../../doctor/register">Sign up</a> for free.
         </div>
     </div>
+	 
     <!--  Footer -->
     
     <div class="footer_bottom">

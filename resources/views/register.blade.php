@@ -8,10 +8,10 @@
 	<link rel="shortcut icon" href="favicon.ico" />
     
     <!-- CSS --> 	
-    <link type="text/css" rel="stylesheet" href="css/style.css" />    
-    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script type="text/javascript" src="js/all.js"></script>
+    <link type="text/css" rel="stylesheet" href="../css/style.css" />    
+    <script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <script type="text/javascript" src="../js/all.js"></script>
 	
 </head>
 <body>
@@ -23,17 +23,17 @@
     	<div class="htop">
         	<div class="wrap cf">
             	<div class="htopleft">
-                	<img alt="globe" src="images/globeicon.png"><a href="#">French</a>
+                	<img alt="globe" src="../images/globeicon.png"><a href="#">French</a>
                 </div>
                 <div class="htopright cf">
-                	<a class="sta" href="register/register1">Get Started</a>
-                    <a class="sg" href="register/signin">Sign in</a>
+                	<a class="sta" href="../patient/register/step1">Get Started</a>
+                    <a class="sg" href="../signin">Sign in</a>
                 </div>
             </div>
         </div>
         <div class="hbot">
             <div class="wrap cf">
-                <div class="logo"><a href="register/index"><img alt="Waystagemde" src="images/logo.png" /></a></div>
+                <div class="logo"><a href="../index"><img alt="Waystagemde" src="../images/logo.png" /></a></div>
                 <div class="hbotright cf">
                     <ul class="cf">
                     	<li><a href="http://www.waystage.com#how">how it works</a></li>
@@ -51,7 +51,7 @@
             <div class="regdocmid cf">
             	<div class="regdocleft">
                 	<h4>Your information</h4>
-                    <form action="/register" enctype="multipart/form-data" method="POST">
+                    <form action="../doctor/register" enctype="multipart/form-data" method="POST">
 						@if(count($errors))
 						  <div class="alert alert-danger">
 							  <strong>Whoops!</strong> There were some problems with your input.
@@ -64,8 +64,15 @@
 						 </div>
 						@endif
 						
+						
+						@if(session()->has('message'))
+                          <div class="alert alert-success">
+                             {{ session()->get('message') }}
+                          </div>
+                        @endif
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						
+						<div class="rdfield form-group {{ $errors->has('role') ? 'has-error' : '' }}"><select name="role"><option>Role</option><option>Doctor</option><option>Patient</option></select></div>
 						<div class="rdfield form-group {{ $errors->has('First_Name') ? 'has-error' : '' }}"><input name="First_Name" type="text" placeholder="First Name" value="{{ old('First_Name') }}">
 						<span class="text-danger">{{ $errors->first('First Name') }}</span></div>
 						<div class="rdfield form-group {{ $errors->has('Last_Name') ? 'has-error' : '' }}"><input name="Last_Name" type="text" placeholder="Last Name" value="{{ old('Last_Name') }}"></div>
@@ -81,9 +88,9 @@
 						<div class="rdfield form-group {{ $errors->has('profession') ? 'has-error' : '' }}"><input name="profession" type="text" placeholder="Professiona License#"></div>
 						<div class="rdfield form-group {{ $errors->has('state/country') ? 'has-error' : '' }}"><select name="country"><option>State/Country</option><option>India</option><option>USA</option></select></div>
 						<div class="regdoccheck form-group {{ $errors->has('newsletter') ? 'has-error' : '' }}">
-							<div class="regchk">
+							<div class="regchk"  name="newsletter">
 								<input type="checkbox" id="newsletter" />
-								<label name="newsletter"><span></span></label><p>By signing up  you agree our <a href="register/term_of_use">Terms of Service</a> and <a href="register/privacy.html">Privacy Policy.</a></p>
+								<label><span></span></label><p>By signing up  you agree our <a href="../term_of_use">Terms of Service</a> and <a href="../privacy">Privacy Policy.</a></p>
 							</div>
 						</div>
 						<div class="regdocsub"><input name="" type="submit" value="SIGN UP"></div>
@@ -95,7 +102,7 @@
                     <!--<a title="video" href="#" rel="https://www.youtube.com/embed/ymAv7s38E8I?rel=0&amp;autoplay=1" class="vplaybtn">
                     	<img src="images/youtube.png" alt="">
                     </a>-->
-                    <video width="100%"  controls>  <source src="mp4/waystage.mp4" type="video/mp4"></video>
+                    <video width="100%"  controls>  <source src="../mp4/waystage.mp4" type="video/mp4"></video>
                     </div>
                     <h3>Benefits for you</h3>
                     <ul>

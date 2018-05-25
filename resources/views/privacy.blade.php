@@ -24,14 +24,14 @@
                 	<img alt="globe" src="images/globeicon.png"><a href="#">French</a>
                 </div>
                 <div class="htopright cf">
-                	<a class="sta" href="register1.html">Get Started</a>
-                    <a class="sg" href="signin.html">Sign in</a>
+                	<a class="sta" href="patient/register/step1">Get Started</a>
+                    <a class="sg" href="doctor/signin">Sign in</a>
                 </div>
             </div>
         </div>
         <div class="hbot">
             <div class="wrap cf">
-                <div class="logo"><a href="index.html"><img alt="Waystagemde" src="images/logo.png" /></a></div>
+                <div class="logo"><a href="doctor/register/index"><img alt="Waystagemde" src="images/logo.png" /></a></div>
                 <div class="hbotright cf">
                     <ul class="cf">
                     	<li><a href="http://www.waystage.com#how">how it works</a></li>

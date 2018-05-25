@@ -61,8 +61,11 @@ class dashboardController extends Controller
             ->where('id',$id)
             ->update(['first_name' => $firstName, 'last_name' => $lastName, 'email' =>  $email, 'alternate_email' => $altemail, 'address' => $address, 'city' => $city, 'zip' => $zip, 'country' => $country, 'phone' => $phone, 'abbreviation' => $abbreviation, 'password' => $password, 'bio' => $bio]);
 				
-				
-						return Redirect::to('doctor/dashboard/feesandpayment')->with('message', 'Doctor your personel profile Successfully made.');
+			if(Input::get('continue')) 
+			{
+                     return Redirect::to('doctor/dashboard/feesandpayment')->with('message', 'Doctor your personel profile Successfully made.'); //if login then use this method
+            }
+						
 						
 			
 			

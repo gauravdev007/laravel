@@ -144,7 +144,7 @@
                 </div>                
                 <div class="pmformsub cf">
                     <button class="savebut2 save" type="submit">Save</button>
-
+                    <input class="savebut1 save" type="submit" value="Save and continue" name="continue">  
                 </div>
                 
             </div>

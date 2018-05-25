@@ -55,9 +55,12 @@ class dashboardController extends Controller
 			//print_r($_POST);
 			//die;
 			//$profession = Input::get('profession', 'test');
-			
-			
-				$id = DB::table('doctor_dashboard')->insertGetId(
+			$id=Session::get('id');
+			 
+			DB::table('doctors')
+            ->where('',)
+            ->update(['votes' => 1]);
+				$id = DB::insert('doctors')->update(
 						['DocFname' => $firstName, 'DocLname' => $lastName, 'DocEmail' => $email, 'DocAlternateEmail' => $altemail, 'DocAddress' => $address,'DocPassword' => $password, 'DocCity' => $city, 'DocZip' => $zip, 'DocCountry' => $country, 'DocPhone' => $phone, 'DocAbbreviation' => $abbreviation, 'DocBio' => $bio]
 				);
 				

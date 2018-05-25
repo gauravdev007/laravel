@@ -72,7 +72,7 @@
                         @endif
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						
-						<div class="rdfield form-group {{ $errors->has('role') ? 'has-error' : '' }}"><select name="role"><option>Role</option><option>Doctor</option><option>Patient</option></select></div>
+						<div class="rdfield form-group {{ $errors->has('role') ? 'has-error' : '' }}"><select name="role">Role<option>Doctor</option></select></div>
 						<div class="rdfield form-group {{ $errors->has('First_Name') ? 'has-error' : '' }}"><input name="First_Name" type="text" placeholder="First Name" value="{{ old('First_Name') }}">
 						<span class="text-danger">{{ $errors->first('First Name') }}</span></div>
 						<div class="rdfield form-group {{ $errors->has('Last_Name') ? 'has-error' : '' }}"><input name="Last_Name" type="text" placeholder="Last Name" value="{{ old('Last_Name') }}"></div>

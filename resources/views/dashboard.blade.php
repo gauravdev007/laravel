@@ -60,18 +60,13 @@
                				
                 <div class="dnewfield">
                 	<label>Enter abbreviations following your names as you wish them to appear</label>
-                    <input type="text" name="abbreviation" value="{{ old('abbreviation')}}">
+                    <input type="text" name="abbreviation" value="">
 					
                 </div>
                 <div class="dfield2">
-                	<div class="dfield2inner cf form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+                	<div class="dfield2inner cf">
                     	<label>Email Address *</label>
-                        <input type="email" name="email" value="{{ old('email')}}">
-						@if ($errors->has('email'))
-							<span class="help-block">
-								<strong>{{ $errors->first('email') }}</strong>
-							</span>
-                        @endif
+                        <input type="email" name="email" value="{{ Session::get('email')}}">
                     </div>
                     <div class="dfield2inner cf">
                     	<label>Alternate Email</label>
@@ -80,23 +75,18 @@
                 </div>
                 <div class="dfield3 cf">
                 	<label>Password</label>
-                    <input name="" type="password" placeholder="*********" name="password">
+                    <input name="" type="password" placeholder="*********" name="password" value="{{ Session::get('password')}}">
                     <a href="#">(Change Password)</a>
                 </div>
                 <div class="dfield4 cf \">
                 	<div class="dfield4top cf form-group">
 						<label>First Name *</label>
-                    	<div class="dfinput"><input name="fname" type="text" value="{{ Session::get('first_name')}}"></div>
-			
+                    	<div class="dfinput"><input name="fname" type="text" value="{{ Session::get('first_name')}}">
+						</div>
                     </div> 
-                    <div class="dfield4bot cf form-group {{ $errors->has('lname') ? 'has-error' : '' }}">
+                    <div class="dfield4bot cf">
 						<label>Last Name *</label>
-                    	<div class="dfinput"><input name="lname" type="text"  value="{{ old('lname')}}"></div>
-						@if ($errors->has('lname'))
-							<span class="help-block">
-								<strong>{{ $errors->first('lname') }}</strong>
-							</span>
-                        @endif
+                    	<div class="dfinput"><input name="lname" type="text"  value="{{ Session::get('last_name')}}"></div>
                     </div>               	
                 </div>  
                 <div class="dfield5 cf">

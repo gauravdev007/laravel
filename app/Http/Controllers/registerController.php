@@ -10,7 +10,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\Input;
 use DB;
 use Hash;
-
+use Illuminate\Support\Facades\Session;
 
 use App\doctor;
 
@@ -57,7 +57,7 @@ class registerController extends Controller
 	protected function doctorvalidation(Request $request)
     {
 	 $this->validate($request,[
-	            'role' => 'required',
+	         
     			'First_Name' => 'required|string|min:2|max:35',
     			'Last_Name' => 'required|string|min:2|max:35',
     			'email' => 'required|email|unique:users',
@@ -69,7 +69,7 @@ class registerController extends Controller
 				'country' => 'required'
 				
     		],[
-			    'role.required' => ' The role field is required.',
+			    
     			'First_Name.required' => ' The first name field is required.',
     			'First_Name.min' => ' The first name must be at least 2 characters.',
     			'First_Name.max' => ' The first name may not be greater than 35 characters.',
@@ -103,7 +103,11 @@ class registerController extends Controller
 			$users = DB::select('select * from doctors where email = ? or username = ?', [$email, $username]);
 			//print_r($users); die;
 			if(is_array($users) && count($users) > 0) {
-				
+				  Session(['first_name' => $firstName]);
+				  Session(['last_name' => $lastName]);
+				  Session(['email' => $email]);
+				  Session(['password' => $password]);
+				  Session(['country' => $country]);
 					return Redirect::to('doctor/register')->with('message', 'Doctor already registered.');
 					//'message' => 'Doctor already registered.'
 				
@@ -113,7 +117,12 @@ class registerController extends Controller
 				$id = DB::table('doctors')->insertGetId(
 						['role' => $role,'first_name' => $firstName, 'last_name' => $lastName, 'email' => $email, 'username' => $username, 'password' => $password, 'speciality' => $speciality, 'graduation' => $graduation, 'degree' => $degree, 'year' => $year, 'profession' => $profession, 'country' => $country, 'newsletter' => $newsletter]
 				);
-				  
+				  Session(['id' => $id]);
+				  Session(['first_name' => $firstName]);
+				  Session(['last_name' => $lastName]);
+				  Session(['email' => $email]);
+				  Session(['password' => $password]);
+				  Session(['country' => $country]);
 						return Redirect::to('signin')->with('message', 'Doctor registered Successfully.');
 						//'message' => 'Doctor already registered.',
 						//return view('signin');
@@ -122,12 +131,7 @@ class registerController extends Controller
 			$id= false;
 			if($id) { echo 'true';}else{ echo 'false';}
 			
-			      Session::set('first_name', $firstName);
-				  Session::set('last_name', $lastName);
-				  Session::set('email', $email);
-				  Session::set('password', $password);
-				  Session::set('country', $country);
-			
+			      
 			
 			die;
         return User::create([

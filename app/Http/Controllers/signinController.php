@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
-
 use Illuminate\Validation\Factory;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Validator;
 use Illuminate\Support\Facades\Input;
@@ -44,11 +42,21 @@ class signinController extends Controller
              $login = $request->input('login')
 			 ]);
 
-          
+              $signin = array();
 			  $signin = DB::select('select * from doctors where email = ? or username = ? and password = ?', [$login, $login, $password]);
 			   if(is_array($signin) && count($signin) > 0) {
+			
+				   foreach ($signin as $result) {
+					  Session(['id' => ($result->id)]);
+					  Session(['first_name' => $result->first_name]);
+					  Session(['last_name' => $result->last_name]);
+					  Session(['email' => $result->email]);
+					  Session(['password' => $result->password]);
+					  Session(['country' => $result->country]);
+				   }
+			   
 				return Redirect::to('doctor/dashboard')->with('message', 'login');
-			    }
+			   }
 			
 			   else {
 			
@@ -57,7 +65,7 @@ class signinController extends Controller
 			    }
 		   
 		  
-	
+	         die;
 
          
 	

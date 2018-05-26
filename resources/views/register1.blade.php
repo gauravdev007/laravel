@@ -52,19 +52,8 @@
             <div class="regoneform">
             	<h3>Your information</h3>
                 <div class="regoneforminner">
-                	<form action="" enctype="multipart/form-data">
-						@if(count($errors))
-							  <div class="alert alert-danger">
-								  <strong>Whoops!</strong> There were some problems with your input.
-								  <br/>
-								  <ul>
-								  @foreach($errors->all() as $error)
-								  <li>{{ $error }}</li>
-								  @endforeach
-								  </ul>
-							 </div>
-						@endif
-						
+                	<form action="../../patient/register/step2" enctype="multipart/form-data" method="post">
+
 					    <div class="regonefield form-group {{ $errors->has('role') ? 'has-error' : '' }}"><select name="role">Role<option>Patient</option></select></div>
                     	<div class="regonefield form-group {{ $errors->has('First_Name') ? 'has-error' : '' }}"><input type="text" name="First_Name" value="{{ old('First_Name') }}" placeholder="First Name"></div>
                         <div class="regonefield form-group {{ $errors->has('Last_Name') ? 'has-error' : '' }}"><input type="text" name="Last_Name" value="{{ old('Last_Name') }}" placeholder="Last Name"></div>

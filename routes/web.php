@@ -74,6 +74,8 @@ Route::get('doctor/register/privacy', 'registerController@privacy');
 Route::get('patient/register/step1', 'registerController@register1');
 Route::post('patient/register/step1', 'registerController@patientvalidation');
 Route::get('patient/register/step2', 'registerController@register2');
+Route::post('patient/register/step2', 'registerController@patientvalidation');
+Route::get('patient/register/step3', 'registerController@register3');
 Route::get('patient/register/index', 'registerController@index');
 Route::get('patient/register/term_of_use', 'registerController@term_of_use');
 Route::get('patient/register/privacy', 'registerController@privacy');
@@ -81,4 +83,5 @@ Route::get('signin', 'registerController@signin');
 Route::post('signin', 'signinController@signin');
 
 Route::post('doctor/dashboard','dashboardController@personelprofile');
+Route::get('signin/{token}', 'registerController@confirmation');
 

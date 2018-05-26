@@ -23,16 +23,24 @@
             	<a href="../index"><img alt="waystage" src="../images/logo.png" /></a>
             </div>
             <div class="dnicons">
-            	<a href="#"><img alt="iconew1" src="../images/iconnew1.jpg" /></a>
+            	<a href="../signin"><img alt="iconew1" src="../images/iconnew1.jpg" /></a>
                 <a href="#"><img alt="iconew2" src="../images/iconew2.jpg" /></a>
             </div>
         </div>
     </div>
     <div class="dnew_mid">
     	<div class="dnewwrap cf">
+		<form action="../doctor/dashboard" enctype="multipart/form-data" method="POST">
         	<div class="dnewmidleft">
+			
             	<div class="dnewdocimg">
-                	<img alt="doctorimg" src="../images/docmimg.jpg" />
+					<div id="hover">
+						<img alt="doctorimg" src="{{ Session::get('profile')}}" class="profile"/>
+						<div class="middle">
+						   <input type="file" name="profile" value="null">
+						   <input class="save" type="submit" value="upload" name="upload">
+						</div>
+					</div>
                     <h3>Dr. Zingwa Schwbe</h3>
                	</div>
                 <div class="dnewlmenus">
@@ -45,7 +53,7 @@
                     </ul>
                 </div>
             </div>
-			<form action="../doctor/dashboard" enctype="multipart/form-data" method="POST">
+			
             <div class="dnewmidright personalpright">
             	
             	<h4>Personal Profile</h4>
@@ -119,7 +127,7 @@
                     </div>  
                     <div class="dfield5in cf form-group {{ $errors->has('country') ? 'has-error' : '' }}">
 						<label>Country *</label>
-                    	<div class="dfinput"><select name="country"><option>India</option><option>USA</option><option>UK</option></select></div>
+                    	<div class="dfinput"><select name="country"  value="{{ Session::get('country')}}"><option>India</option><option>USA</option><option>UK</option></select></div>
 						@if ($errors->has('country'))
 							<span class="help-block">
 								<strong>{{ $errors->first('country') }}</strong>
@@ -150,6 +158,7 @@
             </div>
 			</form>
         </div>
+		
     </div>
     <div class="secfooter">
     	<p>Copyrights Waystage MD</p>

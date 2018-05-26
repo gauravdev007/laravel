@@ -8,12 +8,11 @@ use Illuminate\Validation\Factory;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
 use DB;
 use Hash;
-use Illuminate\Support\Facades\Session;
-
 use App\doctor;
-
+use Mail;
 
 
 class registerController extends Controller
@@ -52,6 +51,11 @@ class registerController extends Controller
 	public function register2()
     {
         return view('register2');
+    }
+	 
+	public function register3()
+    {
+        return view('register3');
     }
 	
 	protected function doctorvalidation(Request $request)
@@ -98,16 +102,13 @@ class registerController extends Controller
 			$profession = Input::get('profession');
 			$country = Input::get('country');
 			$newsletter = Input::get('newsletter');
-			//$profession = Input::get('profession', 'test');
+			$data['token'] = str_random(25);
+			Session(['token' => $data['token']]);
 			
 			$users = DB::select('select * from doctors where email = ? or username = ?', [$email, $username]);
 			//print_r($users); die;
 			if(is_array($users) && count($users) > 0) {
-				  Session(['first_name' => $firstName]);
-				  Session(['last_name' => $lastName]);
-				  Session(['email' => $email]);
-				  Session(['password' => $password]);
-				  Session(['country' => $country]);
+				
 					return Redirect::to('doctor/register')->with('message', 'Doctor already registered.');
 					//'message' => 'Doctor already registered.'
 				
@@ -115,38 +116,48 @@ class registerController extends Controller
 			else {
 			
 				$id = DB::table('doctors')->insertGetId(
-						['role' => $role,'first_name' => $firstName, 'last_name' => $lastName, 'email' => $email, 'username' => $username, 'password' => $password, 'speciality' => $speciality, 'graduation' => $graduation, 'degree' => $degree, 'year' => $year, 'profession' => $profession, 'country' => $country, 'newsletter' => $newsletter]
+						['role' => $role,'first_name' => $firstName, 'last_name' => $lastName, 'email' => $email, 'username' => $username, 'password' => $password, 'speciality' => $speciality, 'graduation' => $graduation, 'degree' => $degree, 'year' => $year, 'profession' => $profession, 'country' => $country, 'newsletter' => $newsletter, 'token' => $data['token']]
 				);
-				  Session(['id' => $id]);
-				  Session(['first_name' => $firstName]);
-				  Session(['last_name' => $lastName]);
-				  Session(['email' => $email]);
-				  Session(['password' => $password]);
-				  Session(['country' => $country]);
+				$input=array();
+			 $input = $request->all();
+            $data=array();
+            $data = $input;
+            
+            Mail::send('mails.confirmation', $data, function($message) use($data) 
+            {
+                $message->to($data['email']);
+                $message->subject('Registeration Confirmation');
+            });
+	
+}
+			
 						return Redirect::to('signin')->with('message', 'Doctor registered Successfully.');
 						//'message' => 'Doctor already registered.',
 						//return view('signin');
 				
 			}
-			$id= false;
-			if($id) { echo 'true';}else{ echo 'false';}
+			
 			
 			      
 			
-			die;
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
-	 
-			doctor::create($request->all());
-			return view('signin');
 			
+        
             
 			
-   }
    
+   		 public function confirmation($token)
+    {
+        $user = doctors::where('token', $token)->first();
+        if(!is_null($user))
+        {
+            $user->verified = 1;
+            $user->token = '';
+            $user->save();
+            
+        }
+        
+    }
+
    protected function patientvalidation(Request $request)
     {
 	 $this->validate($request,[
@@ -162,15 +173,14 @@ class registerController extends Controller
     		],[
     			'First_Name.required' => ' The first name field is required.',
     			'First_Name.min' => ' The first name must be at least 2 characters.',
-    			'First_Name.max' => ' The first name may not be greater than 35 characters.','Last_Name.required' => ' The last name field is required.',
+    			'First_Name.max' => ' The first name may not be greater than 35 characters.',
+				'Last_Name.required' => ' The last name field is required.',
     			'Last_Name.min' => ' The last name must be at least 2 characters.',
     			'Last_Name.max' => ' The last name may not be greater than 35 characters.',
 				'email.required' => ' The email field is required.',
 				'username.required' => ' The username field is required.',
     			'username.max' => ' The username may not be greater than 35 characters.',
 				'gender.required' => ' please select your gender',
-				
-				
 				'password.required' => ' The password field is required.',
 				'password.min' => ' The password must be at least 8 characters.',
 				'password.max' => ' The password may not be greater than 8 characters.',
@@ -191,7 +201,7 @@ class registerController extends Controller
 			$newsletter = Input::get('newsletter');
 			//$profession = Input::get('profession', 'test');
 			
-		$users = DB::select('select * from patient where email = ? or username = ?', [$email, $username]);
+		$users = DB::select('select * from doctors where email = ? or username = ?', [$email, $username]);
 			//print_r($users); die;
 			if(is_array($users) && count($users) > 0) {
 				return Redirect::to('doctor/register')->with('message', 'Patient already registered.');

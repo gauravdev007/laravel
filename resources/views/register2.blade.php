@@ -52,7 +52,24 @@
             <div class="regtwoform">
             	<h3>Your information</h3>
                 <div class="regtwoforminner">
-                	<form action="../../patient/regsiter/step3">
+                	<form action="../../patient/regsiter/step3" method="POST">
+						@if(count($errors))
+						  <div class="alert alert-danger">
+							  <strong>Whoops!</strong> There were some problems with your input.
+							  <br/>
+							  <ul>
+							  @foreach($errors->all() as $error)
+							  <li>{{ $error }}</li>
+							  @endforeach
+							  </ul>
+						 </div>
+						@endif
+							
+						@if(session()->has('message'))
+						  <div class="alert alert-success">
+							 {{ session()->get('message') }}
+						  </div>
+                        @endif
                     	<div class="regtwofield form-group {{ $errors->has('dob') ? 'has-error' : '' }}">
                         	<label>Date of Birth</label>
                         	<input type="text" name="dob" value="{{ old('dob') }}" placeholder="mm/dd/yyy">

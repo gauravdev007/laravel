@@ -476,6 +476,36 @@ h1, h2 ,h3, h4, h5, h6 { }
 .dcleftop { min-height:546px; position:relative;}
 .dlmidtext { font-size:16px; color:#7c7c7c; font-family: 'open_sanssemibold'; padding:250px 0 0 0; text-align:center;}
 .docbigimg { width:194px; position:absolute; left:28px; bottom:18px;}
+#hover {
+    position: relative;
+   
+}
+
+
+.profile {
+  opacity: 1;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+#hover:hover .profile {
+  opacity: 0.3;
+}
+
+#hover:hover .middle {
+  opacity: 1;
+}
+
 .borderimg1 { position:absolute; top:135px; right:-14px; width:10px;}
 .borderimg2 { position:absolute; top:327px; right:-17px; width:15px;}
 .dcleftbot { background:#dcf2f0; padding:0 6px 0 34px;}

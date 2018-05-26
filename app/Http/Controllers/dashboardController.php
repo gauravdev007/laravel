@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Input;
 use DB;
 use Hash;
 use Illuminate\Support\Facades\Session;
-
+ 
 class dashboardController extends Controller
 {
     /**
@@ -24,6 +24,36 @@ class dashboardController extends Controller
 	
 	protected function personelprofile(Request $request)
     {
+		$this->validate($request, [
+		'profile'=>'mimes:jpeg,bmp,png|required'
+		]);
+        
+		//get file original name
+		$clientName = $request->file('profile')->getClientOriginalName();
+
+		//generate new name
+		$newName = time().'.'.$request->file('profile')->getClientOriginalExtension();
+		
+		$mimeType = $request->file('profile')->getClientMimeType();
+		$fileSize = $request->file('profile')->getClientSize();
+
+		$info = '<li>Original Name :'.$clientName.'</li>';
+		$info .='<li>New Name :'.$newName.'</li>';
+		$info .='<li>Mime Type :'.$mimeType.'</li>';
+		$info .='<li>Size : '.$fileSize.'</li>';
+        
+		
+	  if(Input::get('upload')) 
+			{
+                Session(['profile' => ('../images'.'/'.$newName)]);
+				//upload
+				 $request->file('profile')->move(
+					base_path().'/public/images', $newName
+				);
+               
+				//\Session::flash('message', 'Successfull uploaded!!<br/>'.$info);
+				return redirect('doctor/dashboard');
+            }
 	 $this->validate($request,[
 				'address' => 'required',
 				'city' => 'required|string',
@@ -39,7 +69,6 @@ class dashboardController extends Controller
 				'phone.required' => ' The mobile/cell number field is required.'
     		]);
             
-			
 			$firstName = Input::get('first_name');
 			$lastName = Input::get('last_name');
 			$email = Input::get('email');
@@ -59,17 +88,17 @@ class dashboardController extends Controller
 			 
 			DB::table('doctors')
             ->where('id',$id)
-            ->update(['first_name' => $firstName, 'last_name' => $lastName, 'email' =>  $email, 'alternate_email' => $altemail, 'address' => $address, 'city' => $city, 'zip' => $zip, 'country' => $country, 'phone' => $phone, 'abbreviation' => $abbreviation, 'password' => $password, 'bio' => $bio]);
+            ->update(['first_name' => $firstName, 'last_name' => $lastName, 'email' =>  $email, 'alternate_email' => $altemail, 'address' => $address, 'city' => $city, 'zip' => $zip, 'country' => $country, 'phone' => $phone, 'abbreviation' => $abbreviation, 'password' => $password, 'bio' => $bio, 'profile' => $newName]);
 				
 			if(Input::get('continue')) 
 			{
                      return Redirect::to('doctor/dashboard/feesandpayment')->with('message', 'Doctor your personel profile Successfully made.'); //if login then use this method
             }
 						
-						
+			return Redirect::to('doctor/dashboard')->with('message', 'Doctor your personel profile Successfully made.');			
 			
 			
-			die;
+			
         
 	 
 			

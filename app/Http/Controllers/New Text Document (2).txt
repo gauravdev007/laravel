@@ -1,0 +1,58 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Validation\Factory;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\Input;
+use DB;
+use Hash;
+use Illuminate\Support\Facades\Session;
+ 
+class dashboardController extends Controller
+{
+    /**
+     * Show the profile for the given user.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+   
+	
+	protected function personelprofile(Request $request)
+    {
+        $this->validate($request, [
+		'profile'=>'mimes:jpeg,bmp,png|required'
+		]);
+        
+		//get file original name
+		$clientName = $request->file('profile')->getClientOriginalName();
+
+		//generate new name
+		$newName = time().'.'.$request->file('profile')->getClientOriginalExtension();
+		
+		$mimeType = $request->file('profile')->getClientMimeType();
+		$fileSize = $request->file('profile')->getClientSize();
+
+		$info = '<li>Original Name :'.$clientName.'</li>';
+		$info .='<li>New Name :'.$newName.'</li>';
+		$info .='<li>Mime Type :'.$mimeType.'</li>';
+		$info .='<li>Size : '.$fileSize.'</li>';
+        
+		
+	  if(Input::get('upload')) 
+			{
+                Session(['profile' => ('../images'.'/'.$newName)]);
+				//upload
+				 $request->file('profile')->move(
+					base_path().'/public/images', $newName
+				);
+               
+				//\Session::flash('message', 'Successfull uploaded!!<br/>'.$info);
+				return redirect('doctor/dashboard');
+            }
+}
+}

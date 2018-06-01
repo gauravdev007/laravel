@@ -736,3 +736,7 @@ box-shadow: 3px 9px 37px 0px rgba(0,0,0,0.5);}
 @media only screen and (max-width:380px){
 .mvideo iframe{ height:200px;}	
 }
+
+.tab {
+  display: none;
+}

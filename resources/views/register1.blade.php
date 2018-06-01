@@ -54,6 +54,19 @@
                 <div class="regoneforminner">
                 	<form action="../../patient/register/step2" enctype="multipart/form-data" method="post">
 
+					    @if(count($errors))
+						  <div class="alert alert-danger">
+							  <strong>Whoops!</strong> There were some problems with your input.
+							  <br/>
+							  <ul>
+							  @foreach($errors->all() as $error)
+							  <li>{{ $error }}</li>
+							  @endforeach
+							  </ul>
+						 </div>
+						@endif
+						
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
 					    <div class="regonefield form-group {{ $errors->has('role') ? 'has-error' : '' }}"><select name="role">Role<option>Patient</option></select></div>
                     	<div class="regonefield form-group {{ $errors->has('First_Name') ? 'has-error' : '' }}"><input type="text" name="First_Name" value="{{ old('First_Name') }}" placeholder="First Name"></div>
                         <div class="regonefield form-group {{ $errors->has('Last_Name') ? 'has-error' : '' }}"><input type="text" name="Last_Name" value="{{ old('Last_Name') }}" placeholder="Last Name"></div>
@@ -61,7 +74,7 @@
                         <div class="regonefield form-group {{ $errors->has('username') ? 'has-error' : '' }}"><input type="text" name="username" value="{{ old('username') }}" placeholder="Create your username"></div>
                         <div class="regonefield form-group {{ $errors->has('password') ? 'has-error' : '' }}"><input type="password" name="password" placeholder="Create a password"></div>
                         <div class="regonefield form-group {{ $errors->has('confrmpass') ? 'has-error' : '' }}"><input type="password" name="confrmpass" placeholder="Confirm your password"></div>
-                        <div class="regonesub"><a href="../../patient/register/step2">Next</a></div>
+                        <div class="regonesub"><input type="submit" value="Next" name="next"></div>
                     </form>
                 </div>
             </div>

@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="SKYPE_TOOLBAR" content ="SKYPE_TOOLBAR_PARSER_COMPATIBLE"/>
-	<link rel="shortcut icon" href="favicon.ico" />
+	<link rel="shortcut icon" href="../../favicon.ico" />
     
     <!-- CSS -->       
     <link type="text/css" rel="stylesheet" href="../../css/style_dashboard.css" />    

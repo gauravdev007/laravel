@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="SKYPE_TOOLBAR" content ="SKYPE_TOOLBAR_PARSER_COMPATIBLE"/>
-	<link rel="shortcut icon" href="favicon.ico" />
+	<link rel="shortcut icon" href="../../favicon.ico" />
     
     <!-- CSS -->       
     <link type="text/css" rel="stylesheet" href="../../css/style.css" />    
@@ -70,7 +70,7 @@
 				
 				<h3>Sign In to your account below</h3>
 				<div class="sigfield form-group {{ $errors->has('type') ? 'has-error' : '' }}">
-				<select name="type"><option>Type</option><option>Doctor</option><option>Patient</option></select>
+				<select name="type">Type<option>Doctor</option><option>Patient</option></select>
 				</div>
 				<div class="sigfield form-group{{ $errors->has('username') || $errors->has('email') ? ' is-invalid' : '' }}"><input name="login" type="text" placeholder="User Name / Email" value="{{ old('username') ?: old('email') }}"></div>
 				<div class="sigfield form-group {{ $errors->has('password') ? 'has-error' : '' }}"><input name="password" type="password" placeholder="Password" value="{{ old('password')}}"></div>

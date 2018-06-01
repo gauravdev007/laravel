@@ -56,15 +56,64 @@ Route::get('doctor/dashboard/feesandpayment', function()
    
  
 });
-Route::get('patient/regsiter/step3', function()
+
+Route::get('patient/healthhistory', function ()
+    {
+	 $patient_id = Session::get('id');	
+     $checkbox = DB::select('select * from patient_dashboard where patient_id = ?',[$patient_id]);
+	 
+	  
+		 
+	  
+	 
+	 
+	   return View::make('healthhistory',['checkbox'=>$checkbox]);
+	    
+		
+	  
+     
+    });
+
+Route::get('patient/uploadfiles', function()
+ 
+{
+    $patient_id = Session::get('id');
+    $users = DB::select('select file, id from patient_dashboard where patient_id = ? and file_status = ?',[$patient_id, 1]);
+	if($users!==null)
+	{
+    //return view('patient/uploadfiles');
+    return View::make('uploadfiles',['users'=>$users]);
+	}
+   
+});
+Route::get('patient/payment', function()
  
 {
  
-   return View::make('register3');
+   return View::make('payment');
    
- 
 });
-
+Route::get('patient/finddoctor', function()
+ 
+{
+ 
+   return View::make('finddoctor');
+   
+});
+Route::get('patient/consultationhistory', function()
+ 
+{
+ 
+   return View::make('consultationhistory');
+   
+});
+Route::get('patient/planformedical', function()
+ 
+{
+ 
+   return View::make('planformedical');
+   
+});
 
 
 Route::post('doctor/register', 'registerController@doctorvalidation');
@@ -85,3 +134,7 @@ Route::post('signin', 'signinController@signin');
 Route::post('doctor/dashboard','dashboardController@personelprofile');
 Route::get('signin/{token}', 'registerController@confirmation');
 
+Route::post('patient/payment','paymentController@payment');
+Route::post('patient/uploadfiles','uploadfilesController@uploadfiles');
+Route::get('patient/uploadfiles/{id}', 'uploadfilesController@remove');
+Route::post('patient/healthhistory', 'healthhistoryController@healthhistory');

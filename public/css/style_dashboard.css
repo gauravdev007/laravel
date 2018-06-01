@@ -386,8 +386,8 @@ h1, h2 ,h3, h4, h5, h6 { }
 .upfilesmid {padding:23px 31px 45px 30px; border:1px solid #c5c5c5; border-radius:4px; -webkit-border-radius:4px; background:#fff;}
 .upfilestoprow { margin:0 0 9px 0;}
 .upfilestoprow span {display:block; float:left; font-size:28px; color:#000000; font-family: 'Gotham'; line-height:28px; padding:5px 0 0 0;}
-.uftpinput {float:right;}
-.uftpinput input { line-height:34px; background:#7c7c7c; color:#fff; padding:0 23px; font-size:14px; font-family: 'open_sanssemibold'; border-radius:5px; -webkit-border-radius:5px;}
+.uftpinput {float:left;}
+.uftpinput input { background:#7c7c7c; color:#fff; padding:7px 23px; font-size:14px; font-family: 'open_sanssemibold'; border-radius:5px; -webkit-border-radius:5px;}
 .upfilesth { background:#ececec; padding:16px 26px; font-size:13px; color:#666666; line-height:13px; font-family: 'open_sanssemibold';}
 .upfilethcol1 {float:left; width:322px; padding:0 0 0 67px;}
 .upfilethcol2 { float:left; width:105px; text-align:center;}
@@ -662,7 +662,7 @@ h1, h2 ,h3, h4, h5, h6 { }
 .mand {display:block; font-size:12px; color:#999999; margin:0 0 15px 0;}
 .dnewfield {margin-bottom:18px;}
 .personalpright label { font-size:12px; color:#000; font-family: 'Gotham Book'; display:block; margin: 0 0 3px 0;}
-.personalpright input { display:block; height:33px; padding:0 10px; border:1px solid #ccc; border-radius:3px; -webkit-border-radius:3px; width:100%;}
+.personalpright input { display:inline-block; height:35px; padding:0 10px; border:1px solid #ccc; border-radius:3px; -webkit-border-radius:3px; width:auto;}
 .dfield2 { padding-bottom:4px; border-bottom:1px solid #ccc;}
 .dfield2inner { margin:0 0 14px 0;}
 .dfield2inner label {float:left; width:26%; padding:0 20px 0 0; line-height:33px; margin:0px;}
@@ -747,4 +747,19 @@ h1, h2 ,h3, h4, h5, h6 { }
 .pseldiv {margin:0 0 10px 0;}
 .pcvv {float:none; margin:10px 0 0 0;} 	
 .pcontentrighttwo {margin:10px 0 0 0;}
+}
+
+
+
+
+
+.uftpinput_main_div {
+    float: right;
+}
+.uftpinput_main_div .uftpinput-1 {
+    padding-right: 10px;
+}
+.rstother input.rstbut_add_2 {
+    margin-top: 14px;
+    width: 100px;
 }

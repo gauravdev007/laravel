@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="SKYPE_TOOLBAR" content ="SKYPE_TOOLBAR_PARSER_COMPATIBLE"/>
-	<link rel="shortcut icon" href="favicon.ico" />
+	<link rel="shortcut icon" href="../favicon.ico" />
     
     <!-- CSS --> 	
     <link type="text/css" rel="stylesheet" href="../css/style.css" />    
@@ -79,7 +79,7 @@
 						<div class="rdfield form-group {{ $errors->has('email') ? 'has-error' : '' }}"><input name="email" type="email" placeholder="Your Current Mail"></div>
 						<div class="rdfield form-group {{ $errors->has('username') ? 'has-error' : '' }}"><input name="username" type="text" placeholder="Create your username"></div>
 						<div class="rdfield form-group {{ $errors->has('password') ? 'has-error' : '' }}"><input name="password" type="password" placeholder="Create a password"></div>
-						<div class="rdfield form-group {{ $errors->has('speciality') ? 'has-error' : '' }}"><select name="speciality"><option>Speciality</option><option>Speciality1</option><option>Speciality2</option></select></div>
+						<div class="rdfield form-group {{ $errors->has('speciality') ? 'has-error' : '' }}"><select name="speciality"><option>Speciality</option><option>Audioprothésiste</option><option>Cancérologue</option><option>Cardiologue</option><option>Chirurgien de l'Obésité</option><option>Chirurgien esthétique</option><option>Dentiste</option><option>Dermatologue</option><option>Diététicien</option><option>Cardiologue</option><option>Chirurgien de l'Obésité</option><option>Chirurgien esthétique</option></select></div>
 						<div class="rdfield form-group {{ $errors->has('graduate') ? 'has-error' : '' }}"><input name="graduate" type="text" placeholder="Mecial or Graduate School"></div>
 						<div class="regsel cf">
 						<div class="rdeg form-group {{ $errors->has('degree') ? 'has-error' : '' }}"><select name="degree"><option>Degree</option><option>Degree1</option><option>Degree2</option></select></div>

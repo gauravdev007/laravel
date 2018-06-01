@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="SKYPE_TOOLBAR" content ="SKYPE_TOOLBAR_PARSER_COMPATIBLE"/>
-	<link rel="shortcut icon" href="favicon.ico" />
+	<link rel="shortcut icon" href="../../favicon.ico" />
     
     <!-- CSS -->       
     <link type="text/css" rel="stylesheet" href="../../css/style.css" />    
@@ -51,8 +51,9 @@
             </div>
             <div class="regtwoform">
             	<h3>Your information</h3>
+				<form action="../../patient/register/step2" enctype="multipart/form-data" method="POST">
                 <div class="regtwoforminner">
-                	<form action="../../patient/regsiter/step3" method="POST">
+                	
 						@if(count($errors))
 						  <div class="alert alert-danger">
 							  <strong>Whoops!</strong> There were some problems with your input.
@@ -70,12 +71,13 @@
 							 {{ session()->get('message') }}
 						  </div>
                         @endif
+						<input type="hidden" name="_token" value="{{ csrf_token() }}">
                     	<div class="regtwofield form-group {{ $errors->has('dob') ? 'has-error' : '' }}">
                         	<label>Date of Birth</label>
-                        	<input type="text" name="dob" value="{{ old('dob') }}" placeholder="mm/dd/yyy">
+                        	<input type="date" name="dob" value="{{ old('dob') }}" placeholder="yyyy-mm-dd">
                         </div>
-                        <div class="regtwofield form-group {{ $errors->has('phone') ? 'has-error' : '' }}"><input type="text"  name="phone" value="{{ old('phone') }}" placeholder="Phone Number"></div>
-                        <div class="regtwofield form-group {{ $errors->has('zip') ? 'has-error' : '' }}"><input type="text" name="zip" value="{{ old('zip') }}" placeholder="Zip Code"></div>   
+                        <div class="regtwofield form-group {{ $errors->has('phone') ? 'has-error' : '' }}"><input type="number"  name="phone" value="{{ old('phone') }}" placeholder="Phone Number"></div>
+                        <div class="regtwofield form-group {{ $errors->has('zip') ? 'has-error' : '' }}"><input type="number" name="zip" value="{{ old('zip') }}" placeholder="Zip Code"></div>   
                         <div class="regtworadio">
                         	<div class="radiodiv">                            	
                         		<input type="radio" id="male" name="gender" value="male"/>
@@ -98,17 +100,17 @@
                             </div>
                         </div>
                         <div class="regtwocheck">
-                        	<div class="regchk">
+                        	<div class="regchk form-group {{ $errors->has('newsletter') ? 'has-error' : '' }}">
                                 <input type="checkbox" id="newsletter" name="newsletter"/>
                                 <label for="newsletter"><span></span></label><p>I agree to the <a href="../../term_of_use">Terms of Service</a> and <a href="../../privacy">Privacy Policy.</a></p>
                             </div>
                         </div> 
                         <div class="regtwobot cf">
-                        	<a class="but" href="../../patient/regsiter/step1">< Back</a>	                    
-                        	<div class="regtwosub"><input type="submit" value="Create Account"></div>
+                        	<a class="but" href="../../patient/register/step1">< Back</a>	                    
+                        	<div class="regtwosub"><input type="submit" name="" value="Create Account"></div>
                         </div>
-                    </form>
                 </div>
+				 </form>
             </div>
         </div>
     </div>
